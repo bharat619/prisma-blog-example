@@ -1,0 +1,24 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  signup(email: String!, password: String!, first_name: String!, last_name: String!): User!
+  signin(email: String!, password: String!): User!
+  signout: Boolean
+  createNote(title: String!, text: String!): Note!
+  updateNote(data: NoteUpdateInput!, where: NoteWhereUniqueInput!): Note
+  deleteNote(where: NoteWhereUniqueInput!): Note
+}
+
+type Query {
+  note(where: NoteWhereUniqueInput!): Note
+  notes(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Note]!
+  notesConnection(where: NoteWhereInput, orderBy: NoteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NoteConnection!
+}
+
+type User {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  note: [Note]!
+}
